@@ -13,19 +13,6 @@ def print_phrase(phrase_object):
 
 if __name__ == "__main__":
     game = Game()
-    # for phrase in game.phrases:
-    #     print(phrase.phrase)
-    # print_phrase(game.get_random_phrase())
-    # print_phrase(game.get_random_phrase())
-    # print_phrase(game.get_random_phrase())
-    # print_phrase(game.get_random_phrase())
-    # print_phrase(game.get_random_phrase())
-
-    # print(game.active_phrase)
-    # print(game.active_phrase.phrase)
-
-    # print(game.active_phrase.phrase)
-    # game.active_phrase.display(game.guesses)
     print(game.active_phrase.phrase)
     game.start()
     
