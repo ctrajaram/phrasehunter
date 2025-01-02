@@ -13,6 +13,7 @@ def print_phrase(phrase_object):
 
 if __name__ == "__main__":
     game = Game()
-    print(game.active_phrase.phrase)
+    print()
+    print(f"The random phrase to be guessed is: {game.active_phrase.phrase}")
     game.start()
     

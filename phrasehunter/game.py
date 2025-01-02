@@ -1,7 +1,8 @@
 # Create your Game class logic in here.
 from typing import List
-from .phrase import Phrase
 from random import choice
+from string import ascii_letters
+from phrasehunter.phrase import Phrase
 
 class Game:
     """Class to manage the functioning of the game"""
@@ -24,10 +25,15 @@ class Game:
                 Phrase("We are awesome")]
 
     def start(self):
-        Game.welcome_to_game()
-        while(self.missed < 6 and not self.active_phrase.check_complete(self.guesses)):
+        self.welcome_to_game()
+        while(self.missed < 5 and not self.active_phrase.check_complete(self.guesses)):
+            print()
             print(f'Number missed: {self.missed} ' )
-            user_guess = self.get_guess()
+            user_guess = self.get_guess().lower()
+            while len(user_guess) > 1 or user_guess not in ascii_letters:
+                print("Invalid guess as a single letter was not chosen, please try again...")
+                user_guess = self.get_guess().lower()
+            
             self.guesses.append(user_guess)
             self.active_phrase.display(self.guesses)
             if not self.active_phrase.check_guess(user_guess):
@@ -35,19 +41,19 @@ class Game:
         self.game_over()
 
     def game_over(self):
-        if self.missed > 5:
+        if self.missed > 4:
             print("You have lost the game")
         else:
             print("Congrats on winning the game")
 
     def get_guess(self):
-        return (user_guess := input("Enter the letter you are guessing: "))
+        return (user_guess := input("Enter the letter you are guessing(must be only 1 letter): "))
 
-    @staticmethod
-    def welcome_to_game():
+    
+    def welcome_to_game(self):
         print("                                ")
         print("================================")
         print("    Welcome to Phrase Hunter    ")
         print("================================")
         print("                                ")
- 
+        self.active_phrase.display(self.guesses)
