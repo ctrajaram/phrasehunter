@@ -45,6 +45,14 @@ class Game:
             print("You have lost the game")
         else:
             print("Congrats on winning the game")
+        play_game_again = input("Do you want to play the game again(Y/N)?: ")
+        if play_game_again == 'Y':
+            game = Game()
+            print()
+            print(f"The random phrase to be guessed is: {game.active_phrase.phrase}")
+            game.start()
+        else:
+            print("Since you opted to not play again, ending the game, thank you.")
 
     def get_guess(self):
         return (user_guess := input("Enter the letter you are guessing(must be only 1 letter): "))
