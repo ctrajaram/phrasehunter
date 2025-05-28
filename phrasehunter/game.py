@@ -4,13 +4,14 @@ from random import choice
 from string import ascii_letters
 from phrasehunter.phrase import Phrase
 
+
 class Game:
     """Class to manage the functioning of the game"""
 
     def __init__(self) -> None:
         self.missed = 0
-        self.phrases: List[str] = self.create_phrases()
-        self.active_phrase: str = self.get_random_phrase()
+        self.phrases: List[Phrase] = self.create_phrases()
+        self.active_phrase: Phrase = self.get_random_phrase()
         self.guesses = [" "]
 
     def get_random_phrase(self):
@@ -18,7 +19,7 @@ class Game:
 
     @staticmethod
     def create_phrases():
-        return [Phrase("Hello World"), 
+        return [Phrase("Hello World"),
                 Phrase("Hello"),
                 Phrase("Hai"),
                 Phrase("You"),
@@ -26,14 +27,14 @@ class Game:
 
     def start(self):
         self.welcome_to_game()
-        while(self.missed < 5 and not self.active_phrase.check_complete(self.guesses)):
+        while self.missed < 5 and not self.active_phrase.check_complete(self.guesses):
             print()
-            print(f'Number missed: {self.missed} ' )
+            print(f'Number missed: {self.missed} ')
             user_guess = self.get_guess().lower()
             while len(user_guess) > 1 or user_guess not in ascii_letters:
                 print("Invalid guess as a single letter was not chosen, please try again...")
                 user_guess = self.get_guess().lower()
-            
+
             self.guesses.append(user_guess)
             self.active_phrase.display(self.guesses)
             if not self.active_phrase.check_guess(user_guess):
@@ -54,10 +55,10 @@ class Game:
         else:
             print("Since you opted to not play again, ending the game, thank you.")
 
-    def get_guess(self):
-        return (user_guess := input("Enter the letter you are guessing(must be only 1 letter): "))
+    @staticmethod
+    def get_guess():
+        return input("Enter the letter you are guessing(must be only 1 letter): ")
 
-    
     def welcome_to_game(self):
         print("                                ")
         print("================================")

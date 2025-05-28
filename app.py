@@ -8,12 +8,13 @@
 
 from phrasehunter.game import Game
 
+
 def print_phrase(phrase_object):
     print(f"The phrase is : {phrase_object.phrase}")
+
 
 if __name__ == "__main__":
     game = Game()
     print()
     print(f"The random phrase to be guessed is: {game.active_phrase.phrase}")
     game.start()
-    
